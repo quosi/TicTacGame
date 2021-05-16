@@ -1,5 +1,6 @@
 
 class TicTac:
+    '''A simple command line Tic Tac Toe game. To start run: python -m main'''
     def __init__(self, board, active=True):
         self.board = board
         self.active = active
