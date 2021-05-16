@@ -37,6 +37,10 @@ class TicTac:
                     if fin:
                         print("Game over!", "Player", self.player, "wins!")
                         self.active = False
+                    fin = self.remis()
+                    if fin=='remis':
+                        print("Game over!", "Remis!")
+                        self.active = False
                     self.updatePlayer()
                     return move
                 else:
@@ -66,6 +70,19 @@ class TicTac:
             return self.board[1]
         if self.board[3] == self.board[5] == self.board[7]:
             return self.board[3]
+
+    def remis(self):
+        if (self.board[1] == 'X' or self.board[1] == 'O') \
+            and (self.board[2] == 'X' or self.board[2] == 'O') \
+            and (self.board[3] == 'X' or self.board[3] == 'O') \
+            and (self.board[4] == 'X' or self.board[4] == 'O') \
+            and (self.board[5] == 'X' or self.board[5] == 'O') \
+            and (self.board[6] == 'X' or self.board[6] == 'O') \
+            and (self.board[7] == 'X' or self.board[7] == 'O') \
+            and (self.board[8] == 'X' or self.board[8] == 'O') \
+            and (self.board[9] == 'X' or self.board[9] == 'O'):
+                return ('remis')
+
 
 def main():
     bSize = [*range(11)]
