@@ -31,18 +31,21 @@ class TicTac:
                 print("Please enter ID between 1 and 9")
             else:
                 if move >= 1 and move <= 9:
-                    self.board[move] = self.player
-                    self.showBoard()
-                    fin = self.gameOver()
-                    if fin:
-                        print("Game over!", "Player", self.player, "wins!")
-                        self.active = False
-                    fin = self.remis()
-                    if fin=='remis':
-                        print("Game over!", "Remis!")
-                        self.active = False
-                    self.updatePlayer()
-                    return move
+                    if self.board[move] == "X" or self.board[move] == "O":
+                        print("Field is already occupied!")
+                    else:
+                        self.board[move] = self.player
+                        self.showBoard()
+                        fin = self.gameOver()
+                        if fin:
+                            print("Game over!", "Player", self.player, "wins!")
+                            self.active = False
+                        fin = self.remis()
+                        if fin=='remis':
+                            print("Game over!", "Remis!")
+                            self.active = False
+                        self.updatePlayer()
+                        return move
                 else:
                     print("ID must be a number between 1 and 9")
 
@@ -82,7 +85,6 @@ class TicTac:
             and (self.board[8] == 'X' or self.board[8] == 'O') \
             and (self.board[9] == 'X' or self.board[9] == 'O'):
                 return ('remis')
-
 
 def main():
     bSize = [*range(11)]
