@@ -4,6 +4,7 @@ class TicTac:
     def __init__(self, board, active=True):
         self.board = board
         self.active = active
+        self.player = 'X'
         
 
     def showBoard(self):
@@ -19,23 +20,37 @@ class TicTac:
         The field can be choosen by entering the accossiated field ID.'''
         
         while True:
-            move = input("Please, enter field ID for your next move.")
+            print("Player", self.player)
+            move = input("Please, enter a field ID for your next move.")
+            if move == 'q':
+                self.active = False
+                return
             try:
                 move = int(move)
             except ValueError:
                 print("Please enter ID between 1 and 9")
             else:
                 if move >= 1 and move <= 9:
-                    self.board[move] = 'X'
+                    self.board[move] = self.player
+                    self.updatePlayer()
                     return move
                 else:
                     print("ID must be a number between 1 and 9")
+
+    def updatePlayer(self):
+        '''Automatic change of player for every turn'''
+        if self.player == 'X':
+            self.player = 'O'
+        else:
+            self.player = 'X'
 
 def main():
     bSize = [*range(11)]
     play = TicTac(bSize, True)
     while play.active == True:
         m1 = play.playRound()
+        # if m1:
+        #    play.board[m1] = 'X'
         play.showBoard()
 
 if __name__ == "__main__":main()
