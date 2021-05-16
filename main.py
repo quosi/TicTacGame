@@ -32,25 +32,46 @@ class TicTac:
             else:
                 if move >= 1 and move <= 9:
                     self.board[move] = self.player
+                    self.showBoard()
+                    fin = self.gameOver()
+                    if fin:
+                        print("Game over!", "Player", self.player, "wins!")
+                        self.active = False
                     self.updatePlayer()
                     return move
                 else:
                     print("ID must be a number between 1 and 9")
 
     def updatePlayer(self):
-        '''Automatic change of player for every turn'''
+        '''Automatic change of players for every turn'''
         if self.player == 'X':
             self.player = 'O'
         else:
             self.player = 'X'
+    
+    def gameOver(self):
+        if self.board[1] == self.board[2] == self.board[3]:
+            return self.board[1]
+        if self.board[4] == self.board[5] == self.board[6]:
+            return self.board[4]        
+        if self.board[7] == self.board[8] == self.board[9]:
+            return self.board[7]
+        if self.board[1] == self.board[4] == self.board[7]:
+            return self.board[1]
+        if self.board[2] == self.board[5] == self.board[8]:
+            return self.board[2]
+        if self.board[3] == self.board[6] == self.board[9]:
+            return self.board[3]
+        if self.board[1] == self.board[5] == self.board[9]:
+            return self.board[1]
+        if self.board[3] == self.board[5] == self.board[7]:
+            return self.board[3]
 
 def main():
     bSize = [*range(11)]
     play = TicTac(bSize, True)
+    play.showBoard()
     while play.active == True:
-        m1 = play.playRound()
-        # if m1:
-        #    play.board[m1] = 'X'
-        play.showBoard()
+        play.playRound()
 
 if __name__ == "__main__":main()
