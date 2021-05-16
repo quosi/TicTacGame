@@ -34,7 +34,6 @@ def main():
     bSize = [*range(11)]
     play = TicTac(bSize, True)
     while play.active == True:
-        play.showBoard()
         m1 = play.playRound()
         play.showBoard()
 
